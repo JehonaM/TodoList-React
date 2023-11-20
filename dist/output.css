@@ -1,9 +1,6 @@
 :root {
-  background-color: rgb(233 213 255);
+  --bodyColor: rgb(243 232 255);
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 body {
   margin: 0;
