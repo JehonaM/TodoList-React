@@ -1,16 +1,20 @@
 import React from "react";
+import Checkbox from "../Checkbox/Checkbox";
 
 export type ToDoItemProps = {
-  id: number;
+  key: number;
   task: string;
   complete: boolean;
 };
 
 const TodoItem = (props: ToDoItemProps) => {
   return (
-    <ol className="list-decimal">
-      <li key={props.id}>{props.task}</li>
-    </ol>
+    <li
+      key={props.key}
+      style={{ textDecoration: props.complete ? "line-through" : "" }}
+    >
+      {props.task}
+    </li>
   );
 };
 
