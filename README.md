@@ -9,7 +9,7 @@
         npm start
 
 # App's features
-    Add new tasks
+    Add new tasksa
     Mark tasks as complete
     Local storage for persistent data
 
