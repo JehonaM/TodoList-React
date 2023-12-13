@@ -5,7 +5,7 @@ export type ButtonProps = {
   children?: React.ReactNode;
   color?: "primary" | "secondary";
   disabled?: boolean;
-  label: string;
+  className: string;
 };
 
 const Button = ({
@@ -13,14 +13,11 @@ const Button = ({
   children,
   color = "primary",
   disabled,
-  label,
+  className,
 }: ButtonProps) => {
   return (
-    <button
-      onClick={onClick}
-      className="w-full bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
-    >
-      {label}
+    <button onClick={onClick} className="className">
+      {children}
     </button>
   );
 };

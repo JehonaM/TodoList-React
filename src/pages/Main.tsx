@@ -13,6 +13,7 @@ interface Task {
 const Main = () => {
   const [task, setTask] = useState("");
   const [error, setError] = useState("");
+  const [defaultChecked, setDefaultChecked] = useState(false);
 
   const [taskList, setTaskList] = useState<Task[]>(() => {
     const savedtaskList = localStorage.getItem("taskList");
@@ -28,6 +29,7 @@ const Main = () => {
   }, [taskList]);
 
   const onInputChange = (event: any) => {
+    setError("");
     setTask(event.target.value);
   };
 
@@ -37,6 +39,7 @@ const Main = () => {
         el.id === item.id ? { ...el, complete: !el.complete } : el
       )
     );
+    setDefaultChecked(item.complete);
   };
 
   const onBlur = () => {};
@@ -49,7 +52,7 @@ const Main = () => {
         {
           id: id,
           task: task,
-          complete: false,
+          complete: defaultChecked,
         },
       ]);
       setError("");
@@ -61,6 +64,13 @@ const Main = () => {
     console.log(taskList);
   };
 
+  const handleDelete = (id: number) => {
+    alert("here");
+    const updateTaskList = taskList.filter((todo) => todo.id !== id);
+    localStorage.setItem("todos", JSON.stringify(updateTaskList));
+    setTaskList(updateTaskList);
+  };
+
   return (
     <div className="h-full">
       <div>
@@ -69,7 +79,7 @@ const Main = () => {
         </h1>
         <div className="w-1/2 m-auto border-2  border-slate-400 px-10 py-10 mt-10">
           <div className="flex mb-12">
-            <div className="base-1 w-4/5">
+            <div className="base-1 w-4/5 md:w-3/5 sm:w-full">
               <InputFiled
                 name={"todo"}
                 value={task}
@@ -83,11 +93,21 @@ const Main = () => {
                 error={error}
               />
             </div>
-            <div className="base-1 w-1/5">
-              <Button label={"Add"} onClick={addNewTask} />
+            <div className="base-1 w-1/5 md:w-2/5 sm-w-full">
+              <Button
+                onClick={addNewTask}
+                className="w-full bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Add
+              </Button>
             </div>
           </div>
-          <TodoList todos={taskList} onChangeBox={onChangeBox} />
+          <TodoList
+            todos={taskList}
+            onChangeBox={onChangeBox}
+            defaultChecked={defaultChecked}
+            onDelete={handleDelete}
+          />
         </div>
       </div>
     </div>
