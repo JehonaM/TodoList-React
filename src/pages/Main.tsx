@@ -78,29 +78,29 @@ const Main = () => {
           My Todo list
         </h1>
         <div className="w-1/2 m-auto border-2  border-slate-400 px-10 py-10 mt-10">
-          <div className="flex mb-12">
-            <div className="base-1 w-4/5 md:w-3/5 sm:w-full">
-              <InputFiled
-                name={"todo"}
-                value={task}
-                type={"text"}
-                placeholder={"New todo"}
-                label={""}
-                className={"w-fill"}
-                required
-                onChange={onInputChange}
-                onBlur={onBlur}
-                error={error}
-              />
-            </div>
-            <div className="base-1 w-1/5 md:w-2/5 sm-w-full">
-              <Button
-                onClick={addNewTask}
-                className="w-full bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
-              >
-                Add
-              </Button>
-            </div>
+          <div className="flex items-center">
+            <InputFiled
+              name={"todo"}
+              value={task}
+              type={"text"}
+              placeholder={"New todo"}
+              label={""}
+              className={"w-full p-2 border border-gray-300 rounded"}
+              required
+              onChange={onInputChange}
+              onBlur={onBlur}
+              error={error}
+            />
+
+            <Button
+              onClick={addNewTask}
+              className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Add
+            </Button>
+          </div>
+          <div className="mb-12">
+            {error && <div style={{ color: "red" }}>Plase add a task!</div>}
           </div>
           <TodoList
             todos={taskList}

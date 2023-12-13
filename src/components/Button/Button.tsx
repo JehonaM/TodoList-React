@@ -16,7 +16,7 @@ const Button = ({
   className,
 }: ButtonProps) => {
   return (
-    <button onClick={onClick} className="className">
+    <button onClick={onClick} className={className}>
       {children}
     </button>
   );

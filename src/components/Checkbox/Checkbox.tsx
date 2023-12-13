@@ -12,7 +12,7 @@ const Checkbox = ({ onClick, defaultChecked, className }: CheckboxProp) => {
       type="checkbox"
       onClick={onClick}
       defaultChecked={defaultChecked}
-      className="className"
+      className={className}
     />
   );
 };

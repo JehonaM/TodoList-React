@@ -2,6 +2,7 @@ import React from "react";
 import ToDoItem from "../TodoItem/TodoItem";
 import Checkbox from "../Checkbox/Checkbox";
 import Button from "../Button/Button";
+import styled from "styled-components";
 
 export type Todo = {
   id: number;
@@ -16,6 +17,11 @@ interface TodoListProps {
   onDelete: (id: number) => void;
 }
 
+const TodoListWrapper = styled.div`
+  text-transform: capitalize;
+  font-size: 16px;
+`;
+
 const TodoList = ({
   todos,
   onChangeBox,
@@ -27,26 +33,28 @@ const TodoList = ({
       <ul>
         {Array.isArray(todos)
           ? todos.map((todo: Todo) => (
-              <div className="t-4 divide-y divide-gray-200 border-b border-t border-white-500">
+              <div className="t-4 divide-y divide-white-500 border-b border-t border-white-500 mb-5">
                 <div className="relative flex items-start py-4">
-                  <div className="min-w-0 w-4/5 flex-1 text-sm leading-6">
-                    <ToDoItem
-                      key={todo.id}
-                      task={todo.task}
-                      complete={todo.complete}
-                    ></ToDoItem>
+                  <div className="min-w-0 flex-1 text-sm leading-6">
+                    <TodoListWrapper>
+                      <ToDoItem
+                        key={todo.id}
+                        task={todo.task}
+                        complete={todo.complete}
+                      ></ToDoItem>
+                    </TodoListWrapper>
                   </div>
-                  <div>
+                  <div className="ml-3 flex h-6 items-center">
                     <Checkbox
                       key={todo.id}
                       onClick={() => onChangeBox(todo)}
                       defaultChecked={todo.complete}
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     ></Checkbox>
 
                     <Button
                       onClick={() => onDelete(todo.id)}
-                      className="w-full bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded"
+                      className="w-full bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded ml-8"
                     >
                       Delete
                     </Button>
