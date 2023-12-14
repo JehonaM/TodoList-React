@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import InputFiled from "../components/InputField/InputFiled";
+import InputFiled from "../components/InputField/InputField";
 import Button from "../components/Button/Button";
 import TodoList from "../components/TodoList/TodoList";
 import { isTemplateTail } from "typescript";
@@ -28,12 +28,12 @@ const Main = () => {
     localStorage.setItem("taskList", JSON.stringify(taskList));
   }, [taskList]);
 
-  const onInputChange = (event: any) => {
+  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setError("");
     setTask(event.target.value);
   };
 
-  const onChangeBox = (item: any) => {
+  const onChangeBox = (item: Task) => {
     setTaskList(
       taskList.map((el) =>
         el.id === item.id ? { ...el, complete: !el.complete } : el
@@ -65,7 +65,7 @@ const Main = () => {
   };
 
   const handleDelete = (id: number) => {
-    alert("here");
+    alert("Are you sure that you want to delete this Todo");
     const updateTaskList = taskList.filter((todo) => todo.id !== id);
     localStorage.setItem("todos", JSON.stringify(updateTaskList));
     setTaskList(updateTaskList);
@@ -100,7 +100,7 @@ const Main = () => {
             </Button>
           </div>
           <div className="mb-12">
-            {error && <div style={{ color: "red" }}>Plase add a task!</div>}
+            {error && <div style={{ color: "red" }}>Please add a task!</div>}
           </div>
           <TodoList
             todos={taskList}

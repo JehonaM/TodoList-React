@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 
 type InputFieldProps = {
-  value: any;
+  value: string;
   name: string;
   label: string;
   type: string;
