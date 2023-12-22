@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import InputFiled from "../components/InputField/InputField";
 import Button from "../components/Button/Button";
 import TodoList from "../components/TodoList/TodoList";
-import { isTemplateTail } from "typescript";
 
 interface Task {
   id: number;
